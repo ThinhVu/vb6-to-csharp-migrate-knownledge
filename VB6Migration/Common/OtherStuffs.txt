@@ -1,0 +1,31 @@
+﻿Other note about VB6 migration:
+
+The "convert way" : VB6 => (Visual Studio 2008) => VB.NET code => (SharpDevelop) => C# code
+
+1. Ref
+C# code still contains ref parameter when parameters type is class.
+Using ref keyword with ref type not necessary and make C# code look ridiculous.
+So we should delete ref if param type is class and just keep ref if param type is struct or primitive.
+
+2. With block problem
+VB6 code using so much With Block and it come up with so much error. Why?
+Because to using with block, C# code must assign to local withXX variable (obviously if using convert tool listed above).
+In case withXX is class, there is no problem, but what happend if withXX is struct type?
+Every code change withXX actually does not change the origin variable. So we must replace withXX with struct variable itself.
+
+3. Swith case problem
+Swith case in VB support range compare. What is it?
+You can using case 1 to 100000 or case "H1" to "H6" but C# does't support this feature.
+You must change switch case to if else in this case.
+
+4. Object everywhere
+Trying to figure out what is really type of object variable and convert it. See Conversion problem below
+
+5. Conversion problem
+Do not using (int), (double), ... or int.Parse, int.TryParse, ...
+Recommand using Convert.ToInt32, Convert.ToDouble
+
+6. Boolean computation problem
+In VB6, you can add, subtract boolean variable with number and...it work.
+How about C#? You can't.
+So notice that True is VB is -1 and False is 0.
