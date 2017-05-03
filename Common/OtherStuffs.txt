@@ -29,3 +29,38 @@ Recommand using Convert.ToInt32, Convert.ToDouble
 In VB6, you can add, subtract boolean variable with number and...it work.
 How about C#? You can't.
 So notice that True is VB is -1 and False is 0.
+
+7. On error resume next
+Suppose we had a VB6 block of code like this
+<code>
+On error resume next
+ statement1
+ statement2
+ ...
+On error goto 0
+</code>
+then in C# you should wrap each statement in try/catch block and set error like this
+
+try
+{
+	statement1
+}
+catch
+{
+	Information.Err().Number = errornumber // where error number different with 0
+}
+try
+{
+	statement1
+}
+catch
+{
+	Information.Err().Number = errornumber // where error number different with 0
+}
+...
+Information.Err().Number = 0 // when another "On error" appear below.
+
+8. String problem
+- Default value of string in VB6 is "".
+- Default value of string in C# is null.
+So VB6 code compare string with "", you should convert it to string.IsNullOrEmpty in C#.
