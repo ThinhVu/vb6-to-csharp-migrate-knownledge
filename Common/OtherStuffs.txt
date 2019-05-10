@@ -64,3 +64,8 @@ Information.Err().Number = 0 // when another "On error" appear below.
 - Default value of string in VB6 is "".
 - Default value of string in C# is null.
 So VB6 code compare string with "", you should convert it to string.IsNullOrEmpty in C#.
+
+
+9. DAO access performance
+To increase DAO access performance, added [STAThread] attribute to your app. // I not sure about this, but you may try when facing similar problem.
+https://stackoverflow.com/questions/127188/could-you-explain-sta-and-mta
